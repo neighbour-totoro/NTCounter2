@@ -1,9 +1,9 @@
 let display = document.getElementById('counter')
 let addBtn = document.getElementById('increaseBtn')
 let resetBtn = document.getElementById('resetBtn')
-let counter = localStorage.getItem('NTCouner') | 0
-
-
+let counter = 0
+counter = Number(localStorage.getItem('NTCounter')) | 0
+updateDisplay()
 
 function updateDisplay(){
     display.textContent = counter
