@@ -5,14 +5,16 @@ let resetBtn = document.getElementById('resetBtn')
 let counter = 0
 let lastUpd = null
 counter = localStorage.getItem('tmr_value') | 0
-lastUpd = localStorage.getItem('lastUpd') | null
-if (lastUpd !=null){
-    updated.style.display = 'flex'
-}
+
 updateDisplay()
 
 function updateDisplay() {
-    updated.textContent = lastUpd
+    if (!localStorage.getItem('lastUpd')){
+        document.getElementById('upd').style.display = 'none'
+    } else {
+        document.getElementById('upd').style.display = 'flex'
+    }
+    updated.textContent = localStorage.getItem('lastUpd')
     display.textContent = counter
 }
 
@@ -31,14 +33,15 @@ Date.prototype.timeNow = function () {
 
 addBtn.addEventListener('click', () => {
     counter++;
-    lastUpd = "LastSync: " + new Date().today() + "  " + new Date().timeNow()
     localStorage.setItem('tmr_value', counter)
-    localStorage.setItem('lastUpd', lastUpd)
+    localStorage.setItem('lastUpd', "LastSync: " + new Date().today() + "  " + new Date().timeNow())
     updateDisplay()
 })
 
 resetBtn.addEventListener('click', () => {
     counter = 0;
+    lastUpd = 'Нет обновлений'
     localStorage.removeItem('tmr_value')
+    localStorage.removeItem('lastUpd')
     updateDisplay()
 })

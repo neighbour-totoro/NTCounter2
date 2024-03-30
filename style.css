@@ -67,8 +67,12 @@ body {
     padding: 30px;
 }
 
-.btn:hover, .btn:active{
+.btn:hover{
     background-color: rgb(217, 196, 231);;
+}
+
+.btn:active{
+  filter: brightness(0.6);
 }
 
 
